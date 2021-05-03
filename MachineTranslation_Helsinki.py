@@ -20,6 +20,8 @@ inputText.insert(tk.END, "Enter German text for translation")
 
 translatedOutput = ""
 
+#Bug fix -> Avoid creation of multiple text box
+translatedText = tk.Text(app, height=10, width=600)
 '2. Add a button'
 def translateFromDEtoEn(inputText):
     # German to English translation
@@ -43,7 +45,10 @@ def translateFromDEtoEn(inputText):
     # print(translatedOutput[0]['translation_text'])
 
     '3. Add an output box'
-    translatedText = tk.Text(app, height=10, width=600)
+
+    # translatedText = tk.Text(app, height=10, width=600)
+    # Delete existing text box
+    translatedText.delete(1.0, tk.END)
     translatedText.pack()
     # Default text
     translatedText.insert(tk.END, translatedOutput[0]['translation_text'])
